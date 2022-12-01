@@ -26,17 +26,12 @@ $(document).ready(function () {
     var humidity3El = $('.humidity3')
     var humidity4El = $('.humidity4')
     var humidity5El = $('.humidity5')
-    var iconEl = $('.icon')
-    var icon1El = $('.icon1')
-    var icon2El = $('.icon2')
-    var icon3El = $('.icon3')
-    var icon4El = $('.icon4')
-    var icon5El = $('.icon5')
     let formInput = document.getElementById("formInput");
     let previouslySearchedList = document.getElementById("city-list");
 
     const apikey = '6596a16fd7478288a7389a02b29495ec'
-    // const cityurl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchEl.value}&appid=${apikey}&units=metric`;
+    const cityurl = `https://api.openweathermap.org/data/2.5/forecast?q=${document.getElementById("formInput").value}&appid=${apikey}&units=metric`;
+    console.log(cityurl)
 
     //Clock set to Zulu time for uniformity and no confusion of time zone
     setInterval(function () {
@@ -45,11 +40,58 @@ $(document).ready(function () {
     }, 1000)
 
 
-    //On click the input is put into the local storage and a button for it is added
+    //On click the input is put into the local storage and a button for it is added, the two problems I'm having is when something is searched or clicked then it just adds the values
+    //It doesn't remove the previous values as well it won't save the buttons if you reload the page
     $('.btn').on('click', function (e) {
         e.preventDefault();
         var value = $(this).siblings(searchEl).val();
         var option = JSON.parse(localStorage.getItem('key'))
+        //This is when it shows from the search bar as well the api I used shows weather in 3 hour increments 
+        const apikey = '6596a16fd7478288a7389a02b29495ec'
+        const cityurl = `https://api.openweathermap.org/data/2.5/forecast?q=${document.getElementById("formInput").value}&appid=${apikey}&units=metric`;
+        fetch(cityurl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+
+                cityNameEl.append(data.city.name)
+                document.querySelector('.icon').src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`
+                tempEl.append(data.list[0].main.temp + ' °C')
+                windEl.append(data.list[0].wind.speed + ' m/s')
+                humidityEl.append(data.list[0].main.humidity + 'kg m⁻³')
+
+                date1El.append(data.list[4].dt_txt)
+                document.querySelector('.icon1').src = `https://openweathermap.org/img/wn/${data.list[4].weather[0].icon}@2x.png`
+                temp1El.append(data.list[4].main.temp + ' °C')
+                wind1El.append(data.list[4].wind.speed + ' m/s')
+                humidity1El.append(data.list[4].main.humidity + 'kg m⁻³')
+
+                date2El.append(data.list[12].dt_txt)
+                document.querySelector('.icon2').src = `https://openweathermap.org/img/wn/${data.list[12].weather[0].icon}@2x.png`
+                temp2El.append(data.list[12].main.temp + ' °C')
+                wind2El.append(data.list[12].wind.speed + ' m/s')
+                humidity2El.append(data.list[12].main.humidity + 'kg m⁻³')
+
+                date3El.append(data.list[20].dt_txt)
+                document.querySelector('.icon3').src = `https://openweathermap.org/img/wn/${data.list[20].weather[0].icon}@2x.png`
+                temp3El.append(data.list[20].main.temp + ' °C')
+                wind3El.append(data.list[20].wind.speed + ' m/s')
+                humidity3El.append(data.list[20].main.humidity + 'kg m⁻³')
+
+                date4El.append(data.list[28].dt_txt)
+                document.querySelector('.icon4').src = `https://openweathermap.org/img/wn/${data.list[28].weather[0].icon}@2x.png`
+                temp4El.append(data.list[28].main.temp + ' °C')
+                wind4El.append(data.list[28].wind.speed + ' m/s')
+                humidity4El.append(data.list[28].main.humidity + 'kg m⁻³')
+
+                date5El.append(data.list[36].dt_txt)
+                document.querySelector('.icon5').src = `https://openweathermap.org/img/wn/${data.list[36].weather[0].icon}@2x.png`
+                temp5El.append(data.list[36].main.temp + ' °C')
+                wind5El.append(data.list[36].wind.speed + ' m/s')
+                humidity5El.append(data.list[36].main.humidity + 'kg m⁻³')
+            })
+
         if (option == null) {
             var option2 = [value];
         } else {
@@ -62,7 +104,7 @@ $(document).ready(function () {
         const newButton = (tag, prop) => Object.assign(document.createElement(tag), prop);
         const El_btn = newButton("button", {
             textContent: value,
-            //On click this is supossed to run it again and will display the element
+            //When the button is clicked the information from the API displays
             onclick() {
                 fetch(cityurl2)
                     .then(function (response) {
@@ -71,38 +113,37 @@ $(document).ready(function () {
                     .then(function (data) {
 
                         cityNameEl.append(data.city.name)
-                        iconEl.append(src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`)
+                        document.querySelector('.icon').src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`
                         tempEl.append(data.list[0].main.temp + ' °C')
                         windEl.append(data.list[0].wind.speed + ' m/s')
                         humidityEl.append(data.list[0].main.humidity + 'kg m⁻³')
 
                         date1El.append(data.list[4].dt_txt)
-                        var icon1 = (data.list[4].weather[0].icon)
-                        icon1El.append(src = "http://openweathermap.org/img/wn/" + icon1 + "@2x.png")
+                        document.querySelector('.icon1').src = `http://openweathermap.org/img/wn/${data.list[4].weather[0].icon}@2x.png`
                         temp1El.append(data.list[4].main.temp + ' °C')
                         wind1El.append(data.list[4].wind.speed + ' m/s')
                         humidity1El.append(data.list[4].main.humidity + 'kg m⁻³')
 
                         date2El.append(data.list[12].dt_txt)
-                        icon2El.append(src = `http://openweathermap.org/img/wn/${data.list[2].main[0]}@2x.png`)
+                        document.querySelector('.icon2').src = `http://openweathermap.org/img/wn/${data.list[12].weather[0].icon}@2x.png`
                         temp2El.append(data.list[12].main.temp + ' °C')
                         wind2El.append(data.list[12].wind.speed + ' m/s')
                         humidity2El.append(data.list[12].main.humidity + 'kg m⁻³')
 
                         date3El.append(data.list[20].dt_txt)
-                        icon3El.append(src = `http://openweathermap.org/img/wn/${data.list[3].main[0]}@2x.png`)
+                        document.querySelector('.icon3').src = `http://openweathermap.org/img/wn/${data.list[20].weather[0].icon}@2x.png`
                         temp3El.append(data.list[20].main.temp + ' °C')
                         wind3El.append(data.list[20].wind.speed + ' m/s')
                         humidity3El.append(data.list[20].main.humidity + 'kg m⁻³')
 
                         date4El.append(data.list[28].dt_txt)
-                        icon4El.append(src = `http://openweathermap.org/img/wn/${data.list[4].main[0]}@2x.png`)
+                        document.querySelector('.icon4').src = `http://openweathermap.org/img/wn/${data.list[28].weather[0].icon}@2x.png`
                         temp4El.append(data.list[28].main.temp + ' °C')
                         wind4El.append(data.list[28].wind.speed + ' m/s')
                         humidity4El.append(data.list[28].main.humidity + 'kg m⁻³')
 
                         date5El.append(data.list[36].dt_txt)
-                        icon5El.append(src = `http://openweathermap.org/img/wn/${data.list[5].main[0]}@2x.png`)
+                        document.querySelector('.icon5').src = `http://openweathermap.org/img/wn/${data.list[36].weather[0].icon}@2x.png`
                         temp5El.append(data.list[36].main.temp + ' °C')
                         wind5El.append(data.list[36].wind.speed + ' m/s')
                         humidity5El.append(data.list[36].main.humidity + 'kg m⁻³')
@@ -114,48 +155,4 @@ $(document).ready(function () {
         previouslySearchedList.appendChild(newLi);
     });
 
-    //This is the long way to get the information from the API and append it to my document. With more time I would've loved to create like a for loop IOT make the code samller and more dynamic.
-    //I also couldn't figure out how to make the links show as the images IE if I console log the source and then open it from the webpage the image shows up
-    //     fetch(cityurl)
-    //     .then(function(response){
-    //         return response.json();
-    //     })
-    //     .then(function(data){
-
-    //         cityNameEl.append(data.city.name)
-    //         iconEl.append(src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`)
-    //         tempEl.append(data.list[0].main.temp + ' °C')
-    //         windEl.append(data.list[0].wind.speed + ' m/s')
-    //         humidityEl.append(data.list[0].main.humidity + 'kg m⁻³')
-
-    //         date1El.append(data.list[4].dt_txt)
-    //         icon1El.append(src = `http://openweathermap.org/img/wn/${data.list[1].main[0]}@2x.png`)
-    //         temp1El.append(data.list[4].main.temp + ' °C')
-    //         wind1El.append(data.list[4].wind.speed + ' m/s')
-    //         humidity1El.append(data.list[4].main.humidity + 'kg m⁻³') 
-
-    //         date2El.append(data.list[12].dt_txt)
-    //         icon2El.append(src = `http://openweathermap.org/img/wn/${data.list[2].main[0]}@2x.png`)
-    //         temp2El.append(data.list[12].main.temp + ' °C')
-    //         wind2El.append(data.list[12].wind.speed + ' m/s')
-    //         humidity2El.append(data.list[12].main.humidity + 'kg m⁻³') 
-
-    //         date3El.append(data.list[20].dt_txt)
-    //         icon3El.append(src = `http://openweathermap.org/img/wn/${data.list[3].main[0]}@2x.png`)
-    //         temp3El.append(data.list[20].main.temp + ' °C')
-    //         wind3El.append(data.list[20].wind.speed + ' m/s')
-    //         humidity3El.append(data.list[20].main.humidity + 'kg m⁻³')
-
-    //         date4El.append(data.list[28].dt_txt)
-    //         icon4El.append(src = `http://openweathermap.org/img/wn/${data.list[4].main[0]}@2x.png`)
-    //         temp4El.append(data.list[28].main.temp + ' °C')
-    //         wind4El.append(data.list[28].wind.speed + ' m/s')
-    //         humidity4El.append(data.list[28].main.humidity + 'kg m⁻³')
-
-    //         date5El.append(data.list[36].dt_txt)
-    //         icon5El.append(src = `http://openweathermap.org/img/wn/${data.list[5].main[0]}@2x.png`)
-    //         temp5El.append(data.list[36].main.temp + ' °C')
-    //         wind5El.append(data.list[36].wind.speed + ' m/s')
-    //         humidity5El.append(data.list[36].main.humidity + 'kg m⁻³')
-    //     })
 })
