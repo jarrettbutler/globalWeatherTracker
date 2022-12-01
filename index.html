@@ -21,7 +21,8 @@
             <div class="container-fluid">
                 <a class="navbar-brand" style="color: white">Weather Dashboard</a>
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search City" aria-label="Search">
+                    <input class="form-control me-2" id="formInput" type="search" placeholder="Search City"
+                        aria-label="Search">
                     <button class="btn btn-outline-success" type="submit" style="color: white">Search</button>
                 </form>
             </div>
@@ -29,60 +30,64 @@
     </header>
 
     <main class="row">
-        <div class="searched col-4">
+        <div class="searched col-3">
             <h3>Previously searched</h3>
             <ul class="list-group" id="city-list"></ul>
         </div>
 
-        <div class="col-8" style= "margin-top: 20px;">
+        <div class="col-9" style="margin-top: 20px;">
             <div class="card-today">
                 <h2 class="city-name"></h2>
                 <h3 class="time"></h3>
-                <i class="icon"></i>
+                <img class="icon"></img>
                 <p class="temperature">Temperature: </p>
                 <p class="windSpeed">Wind Speed: </p>
                 <p class="humidity">Humidity: </p>
             </div>
         </div>
 
-        <!-- <div>
+        <div class="col-3"></div>
+        <div class=" col-9">
             <h2>5-Day Weather Forecast:</h2>
-            <div class="card">
-                <h3 class="date"></h3>
-                <img class="icon">
-                <p class="temperature">Temperature: </p>
-                <p class="windSpeed">Wind Speed: </p>
-                <p class="humidity">Humidity: </p>
+            <div class="fiveDay">
+                <div class="card">
+                    <h3 class="date1"></h3>
+                    <img class="icon1"></img>
+                    <p class="temperature1">Temperature: </p>
+                    <p class="windSpeed1">Wind Speed: </p>
+                    <p class="humidity1">Humidity: </p>
+                </div>
+                <div class="card">
+                    <h3 class="date2"></h3>
+                    <img class="icon2"></img>
+                    <p class="temperature2">Temperature: </p>
+                    <p class="windSpeed2">Wind Speed: </p>
+                    <p class="humidity2">Humidity: </p>
+                </div>
+                <div class="card">
+                    <h3 class="date3"></h3>
+                    <img class="icon3"></img>
+                    <p class="temperature3">Temperature: </p>
+                    <p class="windSpeed3">Wind Speed: </p>
+                    <p class="humidity3">Humidity: </p>
+                </div>
+                <div class="card">
+                    <h3 class="date4"></h3>
+                    <img class="icon4"></img>
+                    <p class="temperature4">Temperature: </p>
+                    <p class="windSpeed4">Wind Speed: </p>
+                    <p class="humidity4">Humidity: </p>
+                </div>
+                <div class="card">
+                    <h3 class="date5"></h3>
+                    <img class="icon5"></img>
+                    <p class="temperature5">Temperature: </p>
+                    <p class="windSpeed5">Wind Speed: </p>
+                    <p class="humidity5">Humidity: </p>
+                </div>
             </div>
-            <div class="card">
-                <h3 class="date"></h3>
-                <img class="icon">
-                <p class="temperature">Temperature: </p>
-                <p class="windSpeed">Wind Speed: </p>
-                <p class="humidity">Humidity: </p>
-            </div>
-            <div class="card">
-                <h3 class="date"></h3>
-                <img class="icon">
-                <p class="temperature">Temperature: </p>
-                <p class="windSpeed">Wind Speed: </p>
-                <p class="humidity">Humidity: </p>
-            </div>
-            <div class="card">
-                <h3 class="date"></h3>
-                <img class="icon">
-                <p class="temperature">Temperature: </p>
-                <p class="windSpeed">Wind Speed: </p>
-                <p class="humidity">Humidity: </p>
-            </div>
-            <div class="card">
-                <h3 class="date"></h3>
-                <img class="icon">
-                <p class="temperature">Temperature: </p>
-                <p class="windSpeed">Wind Speed: </p>
-                <p class="humidity">Humidity: </p>
-            </div>
-        </div> -->
+        </div>
+        </section>
     </main>
 
 </body>
@@ -90,11 +95,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-  src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-  integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-  crossorigin="anonymous"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="./develop/js/script.js"></script>
 

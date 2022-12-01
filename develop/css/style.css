@@ -1,11 +1,19 @@
-*{
+* {
     margin: 0;
-    padding: 0; 
+    padding: 0;
     box-sizing: border-box;
 }
 
-.searched h3{
-margin: 10px;
+.searched h3 {
+    margin: 10px;
 }
 
+.fiveDay {
+    display: flex;
+    flex-direction: row;
+}
 
+.card {
+    height: 250px;
+    width: 175px;
+}
